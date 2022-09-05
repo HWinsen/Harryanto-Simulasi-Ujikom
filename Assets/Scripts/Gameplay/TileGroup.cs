@@ -19,6 +19,7 @@ namespace MatchPicture.Tile
         [SerializeField] private int[] _openedSpriteArray;
         [SerializeField] GameObject[] _tempGameObject;
         [SerializeField] private bool _oneSpriteIsOpened;
+        private int _closedTiles;
 
         // Start is called before the first frame update
         void Start()
@@ -38,6 +39,7 @@ namespace MatchPicture.Tile
             _openedSpriteArray = new int[2];
             _tempGameObject = new GameObject[2];
             _oneSpriteIsOpened = false;
+            _closedTiles = 0;
         }
 
         void SpawnTile()
@@ -115,7 +117,8 @@ namespace MatchPicture.Tile
             string tileAtlasName = tileAtlas.name;
             CheckOpenedTile(gameObject, myKey);
 
-            return tileAtlas.GetSprite(tileAtlasName + "_" + spriteArray[myKey]);
+            // return tileAtlas.GetSprite(tileAtlasName + "_" + spriteArray[myKey]);
+            return tileAtlas.GetSprite(tileAtlasName + "_" + myKey);
         }
 
         void CheckOpenedTile(GameObject game, int index)
@@ -129,12 +132,13 @@ namespace MatchPicture.Tile
                 {
                     Debug.Log("match");
 
-                    for (int i = 0; i < _tempGameObject.Length; i++)
-                    {
-                        _tempGameObject[i].SetActive(false);
-                        _tempGameObject[i] = null;
-                        // _openedSpriteArray[i] = 0;
-                    }
+                    // for (int i = 0; i < _tempGameObject.Length; i++)
+                    // {
+                    //     _tempGameObject[i].SetActive(false);
+                    //     _tempGameObject[i] = null;
+                    //     // _openedSpriteArray[i] = 0;
+                    // }
+                    RemoveMatchedTiles();
                     ResetOpenedSpriteArray();
                     
                 }
@@ -174,6 +178,23 @@ namespace MatchPicture.Tile
             for (int i = 0; i < _openedSpriteArray.Length; i++)
             {
                 _openedSpriteArray[i] = 0;
+            }
+        }
+
+        public void RemoveMatchedTiles()
+        {
+            for (int i = 0; i < _tempGameObject.Length; i++)
+            {
+                _tempGameObject[i].SetActive(false);
+                _tempGameObject[i] = null;
+                // _openedSpriteArray[i] = 0;
+                _closedTiles++;
+            }
+            Debug.Log(_closedTiles);
+
+            if (_closedTiles == _row * _column)
+            {
+                Debug.Log("win");
             }
         }
     }

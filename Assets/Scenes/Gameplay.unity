@@ -370,13 +370,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3b266ebfa0eae47a642041cd2878d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _column: 3
-  _row: 3
+  _column: 4
+  _row: 4
   _tile: {fileID: 8824338543853914643, guid: 6052ddbba2ff6014e9efb761f2695adc, type: 3}
   _themeID: 0
   spriteArray: 
   tileAtlas: {fileID: 4343727234628468602, guid: 7ad72762587036c43ab4088cabeaa4f4, type: 2}
-  _tileList: []
+  _openedSpriteArray: 
+  _tempGameObject: []
+  _oneSpriteIsOpened: 0
 --- !u!4 &924497705
 Transform:
   m_ObjectHideFlags: 0
@@ -429,7 +431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 611.06757}
+  m_AnchoredPosition: {x: 0, y: 611.06836}
   m_SizeDelta: {x: -568.76917, y: -1792.1351}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1111833728
