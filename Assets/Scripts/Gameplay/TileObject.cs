@@ -9,27 +9,29 @@ namespace MatchPicture.Tile
     {
         [SerializeField] private bool _isRaycasted;
         [SerializeField] private Sprite _defaultSprite;
-        private TileGroup tileGroup;
+        private TileGroup _tileGroup;
+        private SpriteRenderer _spriteRenderer;
 
         void Start()
         {
             _isRaycasted = false;
             _defaultSprite = GetComponent<SpriteRenderer>().sprite;
-            tileGroup = transform.parent.GetComponent<TileGroup>();
+            _tileGroup = transform.parent.GetComponent<TileGroup>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         public void OnRaycasted()
         {
             if (_isRaycasted == false)
             {
-                GetComponent<SpriteRenderer>().sprite = tileGroup.ChangeSprite(gameObject);
+                _spriteRenderer.sprite = _tileGroup.ChangeSprite(gameObject);
                 _isRaycasted = true;
             }
         }
         
         public void SetDefaultSprite()
         {
-            GetComponent<SpriteRenderer>().sprite = _defaultSprite;
+            _spriteRenderer.sprite = _defaultSprite;
         }
 
         public void SetIsRaycastedFasle()

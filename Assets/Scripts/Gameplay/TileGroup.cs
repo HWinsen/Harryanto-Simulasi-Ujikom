@@ -49,7 +49,7 @@ namespace MatchPicture.Tile
                 for (int y = 0; y < _column; y++)
                 {
                     var spawnedTile = Instantiate(_tile, new Vector2(x, y), Quaternion.identity);
-                    spawnedTile.name = $"Tile {x} {y}";
+                    // spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.AddComponent<TileObject>();
                     _tiles[new Vector2(x, y)] = spawnedTile;
                     //_tileList.Add(spawnedTile);
@@ -89,9 +89,9 @@ namespace MatchPicture.Tile
             }
 
             // shuffle spriteArray
-            for (int i = 0; i < spriteArray.Length; i++)
+            for (int i = 0; i < spriteArray.Length - 1; i++)
             {
-                int randomIndex = Random.Range(0, spriteArray.Length);
+                int randomIndex = Random.Range(i, spriteArray.Length);
                 int tempInteger = spriteArray[randomIndex];
                 spriteArray[randomIndex] = spriteArray[i];
                 spriteArray[i] = tempInteger;
