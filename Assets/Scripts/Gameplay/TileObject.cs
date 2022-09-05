@@ -21,7 +21,7 @@ namespace MatchPicture.Tile
         {
             if (_isRaycasted)
             {
-                GetComponent<SpriteRenderer>().sprite = _defaultSprite;
+                SetDefaultSprite();
                 _isRaycasted = false;
                 Debug.Log(gameObject.name + " raycasted: " + _isRaycasted);
             }
@@ -31,6 +31,11 @@ namespace MatchPicture.Tile
                 _isRaycasted = true;
                 Debug.Log(gameObject.name + " raycasted: " + _isRaycasted);
             }
+        }
+        
+        public void SetDefaultSprite()
+        {
+            GetComponent<SpriteRenderer>().sprite = _defaultSprite;
         }
     }
 }

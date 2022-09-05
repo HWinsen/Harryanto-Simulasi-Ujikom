@@ -15,7 +15,10 @@ namespace MatchPicture.Tile
         public int[] spriteArray;
         public SpriteAtlas tileAtlas;
         private Dictionary<Vector2, GameObject> _tiles = new Dictionary<Vector2, GameObject>();
-        [SerializeField] private List<GameObject> _tileList = new();
+        [SerializeField] Dictionary<GameObject, int> _tileDictionary = new();
+        [SerializeField] private int[] _openedSpriteArray;
+        [SerializeField] GameObject[] _tempGameObject;
+        private bool _oneSpriteIsOpened;
 
         // Start is called before the first frame update
         void Start()
@@ -31,7 +34,10 @@ namespace MatchPicture.Tile
 
             SetSpriteArray();
             SpawnTile();
-
+            AddToTileDictionary();
+            _openedSpriteArray = new int[2];
+            _tempGameObject = new GameObject[2];
+            _oneSpriteIsOpened = false;
         }
 
         void SpawnTile()
@@ -44,7 +50,7 @@ namespace MatchPicture.Tile
                     spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.AddComponent<TileObject>();
                     _tiles[new Vector2(x, y)] = spawnedTile;
-                    _tileList.Add(spawnedTile);
+                    //_tileList.Add(spawnedTile);
                     spawnedTile.transform.parent = gameObject.transform;
                 }
             }
@@ -87,16 +93,64 @@ namespace MatchPicture.Tile
                 int tempGO = spriteArray[rnd];
                 spriteArray[rnd] = spriteArray[i];
                 spriteArray[i] = tempGO;
+                
+            }
+        }
+
+        void AddToTileDictionary()
+        {
+            int i = 0;
+            foreach (GameObject _o in _tiles.Values)
+            {
+                _tileDictionary[_o] = spriteArray[i];
+                i++;
             }
         }
 
         public Sprite ChangeSprite(GameObject gameObject)
         {
-            var myKey = _tileList.IndexOf(gameObject);
+            var myKey = _tileDictionary[gameObject];
             Debug.Log(myKey);
 
             string tileAtlasName = tileAtlas.name;
+            CheckOpenedTile(gameObject, myKey);
+
             return tileAtlas.GetSprite(tileAtlasName + "_" + spriteArray[myKey]);
+        }
+
+        void CheckOpenedTile(GameObject game, int index)
+        {
+            if (_oneSpriteIsOpened)
+            {
+                _openedSpriteArray[1] = spriteArray[index];
+                _tempGameObject[1] = game;
+
+                if (_openedSpriteArray[0] == _openedSpriteArray[1])
+                {
+                    Debug.Log("match");
+
+                    for (int i = 0; i < _tempGameObject.Length; i++)
+                    {
+                        _tempGameObject[i].SetActive(false);
+                        _tempGameObject[i] = null;
+                    }
+                    
+                }
+                else
+                {
+                    for (int i = 0; i < _tempGameObject.Length; i++)
+                    {
+                        _tempGameObject[i] = null;
+                    }
+                }
+                _oneSpriteIsOpened = false;
+            }
+            else
+            {
+                _openedSpriteArray[0] = spriteArray[index];
+                _tempGameObject[0] = game;
+                _oneSpriteIsOpened = true;
+            }
         }
     }
 }
