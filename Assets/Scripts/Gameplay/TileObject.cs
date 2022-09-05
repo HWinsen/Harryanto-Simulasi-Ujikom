@@ -9,33 +9,32 @@ namespace MatchPicture.Tile
     {
         [SerializeField] private bool _isRaycasted;
         [SerializeField] private Sprite _defaultSprite;
+        private TileGroup tileGroup;
 
-        // Start is called before the first frame update
         void Start()
         {
             _isRaycasted = false;
             _defaultSprite = GetComponent<SpriteRenderer>().sprite;
+            tileGroup = transform.parent.GetComponent<TileGroup>();
         }
 
         public void OnRaycasted()
         {
-            if (_isRaycasted)
+            if (_isRaycasted == false)
             {
-                SetDefaultSprite();
-                _isRaycasted = false;
-                Debug.Log(gameObject.name + " raycasted: " + _isRaycasted);
-            }
-            else
-            {
-                GetComponent<SpriteRenderer>().sprite = transform.parent.GetComponent<TileGroup>().ChangeSprite(gameObject);
+                GetComponent<SpriteRenderer>().sprite = tileGroup.ChangeSprite(gameObject);
                 _isRaycasted = true;
-                Debug.Log(gameObject.name + " raycasted: " + _isRaycasted);
             }
         }
         
         public void SetDefaultSprite()
         {
             GetComponent<SpriteRenderer>().sprite = _defaultSprite;
+        }
+
+        public void SetIsRaycastedFasle()
+        {
+            _isRaycasted = false;
         }
     }
 }

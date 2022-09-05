@@ -18,7 +18,7 @@ namespace MatchPicture.Tile
         [SerializeField] Dictionary<GameObject, int> _tileDictionary = new();
         [SerializeField] private int[] _openedSpriteArray;
         [SerializeField] GameObject[] _tempGameObject;
-        private bool _oneSpriteIsOpened;
+        [SerializeField] private bool _oneSpriteIsOpened;
 
         // Start is called before the first frame update
         void Start()
@@ -89,10 +89,10 @@ namespace MatchPicture.Tile
             // shuffle spriteArray
             for (int i = 0; i < spriteArray.Length; i++)
             {
-                int rnd = Random.Range(0, spriteArray.Length);
-                int tempGO = spriteArray[rnd];
-                spriteArray[rnd] = spriteArray[i];
-                spriteArray[i] = tempGO;
+                int randomIndex = Random.Range(0, spriteArray.Length);
+                int tempInteger = spriteArray[randomIndex];
+                spriteArray[randomIndex] = spriteArray[i];
+                spriteArray[i] = tempInteger;
                 
             }
         }
@@ -122,7 +122,7 @@ namespace MatchPicture.Tile
         {
             if (_oneSpriteIsOpened)
             {
-                _openedSpriteArray[1] = spriteArray[index];
+                _openedSpriteArray[1] = index;
                 _tempGameObject[1] = game;
 
                 if (_openedSpriteArray[0] == _openedSpriteArray[1])
@@ -133,23 +133,47 @@ namespace MatchPicture.Tile
                     {
                         _tempGameObject[i].SetActive(false);
                         _tempGameObject[i] = null;
+                        // _openedSpriteArray[i] = 0;
                     }
+                    ResetOpenedSpriteArray();
                     
                 }
                 else
                 {
-                    for (int i = 0; i < _tempGameObject.Length; i++)
-                    {
-                        _tempGameObject[i] = null;
-                    }
+                    // for (int i = 0; i < _tempGameObject.Length; i++)
+                    // {
+                    //     _tempGameObject[i].GetComponent<TileObject>().SetDefaultSprite();
+                    //     _tempGameObject[i] = null;
+                    // }
+                    Invoke("ResetTempGameObject", 1.5f);
+                    ResetOpenedSpriteArray();
                 }
                 _oneSpriteIsOpened = false;
             }
             else
             {
-                _openedSpriteArray[0] = spriteArray[index];
+                _openedSpriteArray[0] = index;
                 _tempGameObject[0] = game;
                 _oneSpriteIsOpened = true;
+            }
+        }
+
+        public void ResetTempGameObject()
+        {
+            for (int i = 0; i < _tempGameObject.Length; i++)
+            {
+                _tempGameObject[i].GetComponent<TileObject>().SetDefaultSprite();
+                _tempGameObject[i].GetComponent<TileObject>().SetIsRaycastedFasle();
+                _tempGameObject[i] = null;
+                // _openedSpriteArray[i] = 0;
+            }
+        }
+
+        public void ResetOpenedSpriteArray()
+        {
+            for (int i = 0; i < _openedSpriteArray.Length; i++)
+            {
+                _openedSpriteArray[i] = 0;
             }
         }
     }
