@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: weapon
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -1176130069, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -649682508, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 2110992942, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1229331067, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 152973850, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -843486398, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1081801121, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 182413484, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1324498545, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 175321938, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1131371650, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1639348080, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -447936900, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1825988026, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -968977075, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1246011123, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -42672362, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 687011717, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -605275917, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1652164375, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 60464864, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1091298413, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1460651634, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1008795517, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1679572109, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 803722479, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -748358013, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1908043210, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1695648857, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 1390286504, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1152609906, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1741399778, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1957986258, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1225549505, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -418943642, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1199362726, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -176090636, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: 188650142, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1617605465, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  - {fileID: -1705329873, guid: 4c24971617894d843856cb0efa2d71af, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - weapon_7
+  - weapon_4
+  - weapon_5
+  - weapon_11
+  - weapon_10
+  - weapon_13
+  - weapon_12
+  - weapon_15
+  - weapon_14
+  - weapon_17
+  - weapon_16
+  - weapon_19
+  - weapon_18
+  - weapon_28
+  - weapon_29
+  - weapon_39
+  - weapon_38
+  - weapon_20
+  - weapon_21
+  - weapon_22
+  - weapon_23
+  - weapon_33
+  - weapon_24
+  - weapon_32
+  - weapon_25
+  - weapon_31
+  - weapon_26
+  - weapon_30
+  - weapon_27
+  - weapon_37
+  - weapon_36
+  - weapon_35
+  - weapon_34
+  - weapon_8
+  - weapon_9
+  - weapon_2
+  - weapon_3
+  - weapon_0
+  - weapon_1
+  - weapon_6
+  m_RenderDataMap: {}
+  m_Tag: weapon
+  m_IsVariant: 0
