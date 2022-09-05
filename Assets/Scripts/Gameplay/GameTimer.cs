@@ -33,7 +33,7 @@ namespace MatchPicture.Gameplay
             }
             else if (gameDuration == 0)
             {
-                PublishSubscribe.Instance.Publish<MessageGameOver>(new MessageGameOver());
+                PublishSubscribe.Instance.Publish<TimeOver>(new TimeOver());
                 this.enabled = false;
             }
         }

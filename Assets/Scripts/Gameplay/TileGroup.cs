@@ -1,4 +1,5 @@
 using Agate.MVC.Core;
+using MatchPicture.PubSub;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,6 @@ namespace MatchPicture.Tile
         [SerializeField] private bool _oneSpriteIsOpened;
         private int _closedTiles;
 
-        // Start is called before the first frame update
         void Start()
         {
             if ( _row % 2 == 1)
@@ -52,7 +52,6 @@ namespace MatchPicture.Tile
                     // spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.AddComponent<TileObject>();
                     _tiles[new Vector2(x, y)] = spawnedTile;
-                    //_tileList.Add(spawnedTile);
                     spawnedTile.transform.parent = gameObject.transform;
                 }
             }
@@ -95,7 +94,6 @@ namespace MatchPicture.Tile
                 int tempInteger = spriteArray[randomIndex];
                 spriteArray[randomIndex] = spriteArray[i];
                 spriteArray[i] = tempInteger;
-                
             }
         }
 
@@ -117,7 +115,6 @@ namespace MatchPicture.Tile
             string tileAtlasName = tileAtlas.name;
             CheckOpenedTile(gameObject, myKey);
 
-            // return tileAtlas.GetSprite(tileAtlasName + "_" + spriteArray[myKey]);
             return tileAtlas.GetSprite(tileAtlasName + "_" + myKey);
         }
 
@@ -131,24 +128,12 @@ namespace MatchPicture.Tile
                 if (_openedSpriteArray[0] == _openedSpriteArray[1])
                 {
                     Debug.Log("match");
-
-                    // for (int i = 0; i < _tempGameObject.Length; i++)
-                    // {
-                    //     _tempGameObject[i].SetActive(false);
-                    //     _tempGameObject[i] = null;
-                    //     // _openedSpriteArray[i] = 0;
-                    // }
                     RemoveMatchedTiles();
                     ResetOpenedSpriteArray();
                     
                 }
                 else
                 {
-                    // for (int i = 0; i < _tempGameObject.Length; i++)
-                    // {
-                    //     _tempGameObject[i].GetComponent<TileObject>().SetDefaultSprite();
-                    //     _tempGameObject[i] = null;
-                    // }
                     Invoke("ResetTempGameObject", 1.5f);
                     ResetOpenedSpriteArray();
                 }
@@ -169,7 +154,6 @@ namespace MatchPicture.Tile
                 _tempGameObject[i].GetComponent<TileObject>().SetDefaultSprite();
                 _tempGameObject[i].GetComponent<TileObject>().SetIsRaycastedFasle();
                 _tempGameObject[i] = null;
-                // _openedSpriteArray[i] = 0;
             }
         }
 
@@ -187,14 +171,12 @@ namespace MatchPicture.Tile
             {
                 _tempGameObject[i].SetActive(false);
                 _tempGameObject[i] = null;
-                // _openedSpriteArray[i] = 0;
                 _closedTiles++;
             }
-            Debug.Log(_closedTiles);
 
             if (_closedTiles == _row * _column)
             {
-                Debug.Log("win");
+                PublishSubscribe.Instance.Publish<TilesCleared>(new TilesCleared());
             }
         }
     }

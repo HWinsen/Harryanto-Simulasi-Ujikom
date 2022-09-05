@@ -10,17 +10,24 @@ namespace MatchPicture.Gameplay
     {
         void Start()
         {
-            PublishSubscribe.Instance.Subscribe<MessageGameOver>(SetGameOverState);
+            PublishSubscribe.Instance.Subscribe<TilesCleared>(SetWinState);
+            PublishSubscribe.Instance.Subscribe<TimeOver>(SetGameOverState);
         }
 
         void OnDestroy()
         {
-            PublishSubscribe.Instance.Unsubscribe<MessageGameOver>(SetGameOverState);
+            PublishSubscribe.Instance.Unsubscribe<TilesCleared>(SetWinState);
+            PublishSubscribe.Instance.Unsubscribe<TimeOver>(SetGameOverState);
         }
 
-        private void SetGameOverState(MessageGameOver message)
+        private void SetGameOverState(TimeOver message)
         {
             Debug.Log("game over");
+        }
+
+        private void SetWinState(TilesCleared message)
+        {
+            Debug.Log("win");
         }
     }
 }
