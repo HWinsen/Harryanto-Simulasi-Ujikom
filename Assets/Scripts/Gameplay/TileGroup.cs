@@ -1,5 +1,6 @@
 using Agate.MVC.Core;
 using MatchPicture.PubSub;
+using MatchPicture.Theme;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,7 @@ namespace MatchPicture.Tile
                 _column++;
             }
 
+            SetTileTheme();
             SetSpriteArray();
             SpawnTile();
             AddToTileDictionary();
@@ -68,6 +70,7 @@ namespace MatchPicture.Tile
         void SetTileTheme()
         {
             // theme di load dari save data
+            tileAtlas = ThemeDatabase.Instance.LoadTheme();
         }
 
         void SetSpriteArray()

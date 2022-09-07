@@ -1,18 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
-public class ThemeDatabase : MonoBehaviour
+namespace MatchPicture.Theme
 {
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+    public class Theme
     {
-        
+        public string themeName;
+        public int price;
+        public SpriteAtlas themeSpriteAtlas;
+        public bool isUnlocked;
     }
 
-    // Update is called once per frame
-    void Update()
+    public class ThemeDatabase : MonoBehaviour
     {
-        
+        public static ThemeDatabase Instance;
+
+        private void Awake() {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+
+        public Theme[] themes;
+        private string usedThemeName;
+
+        public void SetUsedTheme(string themeName)
+        {
+            usedThemeName = themeName;
+        }
+
+        public void SetThemeUnlock(string themeName)
+        {
+            foreach(Theme theme in themes)
+            {
+                if (theme.themeName == themeName)
+                {
+                    theme.isUnlocked = true;
+                }
+            }
+        }
+
+        public SpriteAtlas LoadTheme()
+        {
+            SpriteAtlas selectedAtlas = new();
+
+            foreach(Theme theme in themes)
+            {
+                if (theme.themeName == usedThemeName)
+                {
+                    selectedAtlas = theme.themeSpriteAtlas;
+                }
+            }
+
+            return selectedAtlas;
+        }
+
     }
 }

@@ -2,57 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.U2D;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace MatchPicture.Theme
 {
-    [System.Serializable]
-    public class Theme
-    {
-        public string themeName;
-        public SpriteAtlas themeSpriteAtlas;
-    }
-
     public class ThemeList : MonoBehaviour
     {
-        [SerializeField] private Theme[] _themes;
         [SerializeField] private Button _themeButton;
-        [SerializeField] private GameObject _confirmationPopup;
-        [SerializeField] private TMP_Text _title;
-        public bool isUnlocked { private set; get; }
 
         // Start is called before the first frame update
         void Start()
         {
-            foreach (Theme theme in _themes)
+            foreach (Theme theme in ThemeDatabase.Instance.themes)
             {
-                var tempGO = Instantiate(_themeButton, transform.position, Quaternion.identity);
-                tempGO.name = theme.themeName;
-                tempGO.onClick.RemoveAllListeners();
-                tempGO.onClick.AddListener(() =>
+                var tempButton = Instantiate(_themeButton, transform.position, Quaternion.identity);
+                tempButton.name = theme.themeName;
+                TMP_Text buttonText = tempButton.GetComponentInChildren<TMP_Text>();
+                if (theme.isUnlocked)
                 {
-                    if (isUnlocked)
+                    buttonText.SetText($"{tempButton.name}");
+                }
+                else
+                {
+                    buttonText.SetText($"Buy {tempButton.name} {theme.price}g");
+                }
+                tempButton.onClick.RemoveAllListeners();
+                tempButton.onClick.AddListener(() =>
+                {
+                    if (theme.isUnlocked)
                     {
-                        ChangeTheme();
+                        ChangeTheme(tempButton.name);
                     }
                     else
                     {
-                        UnlockTheme();
+                        UnlockTheme(tempButton.name, buttonText);
                     }
                 });
-                tempGO.transform.parent = gameObject.transform;
+                tempButton.transform.SetParent(gameObject.transform);
             }
         }
 
-        void UnlockTheme()
+        void UnlockTheme(string themeName, TMP_Text text)
         {
-            Debug.Log("unlock theme");
+            Debug.Log("unlock theme " + themeName);
+
+            ThemeDatabase.Instance.SetThemeUnlock(themeName);
+            Debug.Log("Kurangin duit");
+            text.SetText($"{themeName}");
+            // ChangeTheme(themeName);
         }
 
-        void ChangeTheme()
+        void ChangeTheme(string themeName)
         {
-            Debug.Log("change theme");
+            Debug.Log("change theme to " +themeName);
+            ThemeDatabase.Instance.SetUsedTheme(themeName);
+            SceneManager.LoadScene("Gameplay");
         }
     }
 }

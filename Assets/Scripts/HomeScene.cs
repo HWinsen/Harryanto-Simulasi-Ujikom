@@ -18,10 +18,13 @@ namespace MatchPicture.ModuleHomeScene
         void Start()
         {
             actionChangeSceneToGameplay += ChangeSceneToGameplay;
-            actionChangeSceneToTheme += ChangeSceneToTheme;
+            actionChangeSceneToTheme += () => ChangeSceneToTheme("sss");
 
             SetButtonListener(_playButton, actionChangeSceneToGameplay);
             SetButtonListener(_themeButton, actionChangeSceneToTheme);
+
+
+            _playButton.onClick.AddListener(actionChangeSceneToGameplay);
         }
 
         private void SetButtonListener(Button button, UnityAction unityAction)
@@ -35,7 +38,7 @@ namespace MatchPicture.ModuleHomeScene
             SceneManager.LoadScene("Gameplay");
         }
 
-        private void ChangeSceneToTheme()
+        private void ChangeSceneToTheme(string str)
         {
             SceneManager.LoadScene("Theme");
         }
