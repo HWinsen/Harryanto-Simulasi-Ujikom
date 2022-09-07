@@ -18,9 +18,17 @@ namespace MatchPicture.Theme
     {
         public static ThemeDatabase Instance;
 
-        private void Awake() {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(base.gameObject); 
+            }
+            else
+            {
+                Destroy(base.gameObject);
+            }
         }
 
         public Theme[] themes;
